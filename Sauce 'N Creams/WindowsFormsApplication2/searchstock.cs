@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
+//using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using System.Data;
+//using System.Data;
 
 namespace WindowsFormsApplication2
 {
@@ -20,7 +20,7 @@ namespace WindowsFormsApplication2
 
         public void Form1_Load(object sender, EventArgs e)
         {
-            string stmt = "SELECT COUNT (PdNam) FROM StockDetls where Qun >= 0";
+            string stmt = "SELECT COUNT(PdNam) FROM StockDetls where Qun >= 0";
             int count = 0;
             using (SqlConnection thisConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True"))
             {
@@ -38,7 +38,14 @@ namespace WindowsFormsApplication2
             conn.Open();
             int i, j;
             dreader = cmd.ExecuteReader();
-            dataGridView1.Rows.Add(count);
+            if (count == 0)
+            {
+                dataGridView1.Rows.Add(1);
+            }
+            else
+            {
+                dataGridView1.Rows.Add(count);
+            }
             dreader.Read();
             for (i = 0; i < count; i++, dreader.Read())
             { 
@@ -128,71 +135,80 @@ namespace WindowsFormsApplication2
 
         private void checkBox1_CheckStateChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
+            try
             {
-                dataGridView1.Rows.Clear();
-                string stmt = "SELECT COUNT (PdNam) FROM StockDetls where Qun = 0";
-                int count = 0;
-                using (SqlConnection thisConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True"))
+                if (checkBox1.Checked)
                 {
-                    using (SqlCommand cmdCount = new SqlCommand(stmt, thisConnection))
+                    dataGridView1.Rows.Clear();
+                    string stmt = "SELECT COUNT (PdNam) FROM StockDetls where Qun = 0";
+                    int count = 0;
+                    using (SqlConnection thisConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True"))
                     {
-                        thisConnection.Open();
-                        count = (int)cmdCount.ExecuteScalar();
+                        using (SqlCommand cmdCount = new SqlCommand(stmt, thisConnection))
+                        {
+                            thisConnection.Open();
+                            count = (int)cmdCount.ExecuteScalar();
+                        }
+                    }
+                    SqlDataReader dreader;
+                    SqlConnection conn = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True");
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "select PdNam,Qun,Rate from StockDetls where Qun = 0";
+                    conn.Open();
+                    int i, j;
+                    dreader = cmd.ExecuteReader();
+                    dataGridView1.Rows.Add(count);
+                    dreader.Read();
+                    for (i = 0; i < count; i++, dreader.Read())
+                    {
+                        dataGridView1.Rows[i].Cells[1].Value = (dreader["PdNam"].ToString());
+                        dataGridView1.Rows[i].Cells[2].Value = (dreader["Qun"].ToString());
+                        dataGridView1.Rows[i].Cells[3].Value = (dreader["Rate"].ToString());
                     }
                 }
-                SqlDataReader dreader;
-                SqlConnection conn = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True");
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = "select PdNam,Qun,Rate from StockDetls where Qun = 0";
-                conn.Open();
-                int i, j;
-                dreader = cmd.ExecuteReader();
-                dataGridView1.Rows.Add(count);
-                dreader.Read();
-                for (i = 0; i < count; i++, dreader.Read())
+                else
                 {
-                    dataGridView1.Rows[i].Cells[1].Value = (dreader["PdNam"].ToString());
-                    dataGridView1.Rows[i].Cells[2].Value = (dreader["Qun"].ToString());
-                    dataGridView1.Rows[i].Cells[3].Value = (dreader["Rate"].ToString());
-                }
-            }
-            else
-            {
-                dataGridView1.Rows.Clear();
-                string stmt = "SELECT COUNT (PdNam) FROM StockDetls where Qun >= 0";
-                int count = 0;
-                using (SqlConnection thisConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True"))
-                {
-                    using (SqlCommand cmdCount = new SqlCommand(stmt, thisConnection))
+                    dataGridView1.Rows.Clear();
+                    string stmt = "SELECT COUNT (PdNam) FROM StockDetls where Qun >= 0";
+                    int count = 0;
+                    using (SqlConnection thisConnection = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True"))
                     {
-                        thisConnection.Open();
-                        count = (int)cmdCount.ExecuteScalar();
+                        using (SqlCommand cmdCount = new SqlCommand(stmt, thisConnection))
+                        {
+                            thisConnection.Open();
+                            count = (int)cmdCount.ExecuteScalar();
+                        }
                     }
+                    SqlDataReader dreader;
+                    SqlConnection conn = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True");
+                    SqlCommand cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = "select PdNam,Qun,Rate from StockDetls where Qun >= 0";
+                    conn.Open();
+                    int i, j;
+                    dreader = cmd.ExecuteReader();
+                    dataGridView1.Rows.Add(count);
+                    dreader.Read();
+                    for (i = 0; i < count; i++, dreader.Read())
+                    {
+                        dataGridView1.Rows[i].Cells[1].Value = (dreader["PdNam"].ToString());
+                        dataGridView1.Rows[i].Cells[2].Value = (dreader["Qun"].ToString());
+                        dataGridView1.Rows[i].Cells[3].Value = (dreader["Rate"].ToString());
+                    }
+                    textBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
+                    textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                    AutoCompleteStringCollection DataCollection = new AutoCompleteStringCollection();
+                    addItems(DataCollection);
+                    textBox1.AutoCompleteCustomSource = DataCollection;
                 }
-                SqlDataReader dreader;
-                SqlConnection conn = new SqlConnection("Data Source=.\\SQLEXPRESS;AttachDbFilename=|DataDirectory|\\App_Data\\SauceCream.mdf;Integrated Security=True;User Instance=True");
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = conn;
-                cmd.CommandText = "select PdNam,Qun,Rate from StockDetls where Qun >= 0";
-                conn.Open();
-                int i, j;
-                dreader = cmd.ExecuteReader();
-                dataGridView1.Rows.Add(count);
-                dreader.Read();
-                for (i = 0; i < count; i++, dreader.Read())
-                {
-                    dataGridView1.Rows[i].Cells[1].Value = (dreader["PdNam"].ToString());
-                    dataGridView1.Rows[i].Cells[2].Value = (dreader["Qun"].ToString());
-                    dataGridView1.Rows[i].Cells[3].Value = (dreader["Rate"].ToString());
-                }
-                textBox1.AutoCompleteMode = AutoCompleteMode.Suggest;
-                textBox1.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                AutoCompleteStringCollection DataCollection = new AutoCompleteStringCollection();
-                addItems(DataCollection);
-                textBox1.AutoCompleteCustomSource = DataCollection;   
+
             }
+            catch { }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
     }

@@ -32,11 +32,11 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.sl_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.itm_name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.item = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.vat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rs = new System.Windows.Forms.TextBox();
             this.vt = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,6 +58,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
             this.print = new System.Windows.Forms.Button();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -100,17 +101,20 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sl_no,
-            this.itm_name,
+            this.item,
             this.qty,
             this.rate,
             this.vat,
-            this.amt});
+            this.amount});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Enabled = false;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 24;
             this.dataGridView1.Size = new System.Drawing.Size(486, 166);
             this.dataGridView1.TabIndex = 10;
@@ -123,12 +127,12 @@
             this.sl_no.ReadOnly = true;
             this.sl_no.Width = 30;
             // 
-            // itm_name
+            // item
             // 
-            this.itm_name.HeaderText = "Item Name";
-            this.itm_name.Name = "itm_name";
-            this.itm_name.ReadOnly = true;
-            this.itm_name.Width = 225;
+            this.item.HeaderText = "Item Name";
+            this.item.Name = "item";
+            this.item.ReadOnly = true;
+            this.item.Width = 225;
             // 
             // qty
             // 
@@ -151,12 +155,12 @@
             this.vat.ReadOnly = true;
             this.vat.Width = 50;
             // 
-            // amt
+            // amount
             // 
-            this.amt.HeaderText = "Amount";
-            this.amt.Name = "amt";
-            this.amt.ReadOnly = true;
-            this.amt.Width = 75;
+            this.amount.HeaderText = "Amount";
+            this.amount.Name = "amount";
+            this.amount.ReadOnly = true;
+            this.amount.Width = 75;
             // 
             // rs
             // 
@@ -236,17 +240,18 @@
             // datepre
             // 
             this.datepre.AutoSize = true;
-            this.datepre.Location = new System.Drawing.Point(442, 189);
+            this.datepre.Location = new System.Drawing.Point(422, 189);
             this.datepre.Name = "datepre";
             this.datepre.Size = new System.Drawing.Size(37, 13);
             this.datepre.TabIndex = 9;
             this.datepre.Text = "label2";
+            this.datepre.Click += new System.EventHandler(this.datepre_Click);
             // 
             // date
             // 
             this.date.AutoSize = true;
             this.date.Font = new System.Drawing.Font("Calibri", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.date.Location = new System.Drawing.Point(391, 188);
+            this.date.Location = new System.Drawing.Point(379, 188);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(33, 14);
             this.date.TabIndex = 8;
@@ -260,6 +265,7 @@
             this.bill_no.Size = new System.Drawing.Size(37, 13);
             this.bill_no.TabIndex = 7;
             this.bill_no.Text = "label2";
+            this.bill_no.Click += new System.EventHandler(this.bill_no_Click);
             // 
             // billno
             // 
@@ -297,9 +303,9 @@
             this.add.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.add.Location = new System.Drawing.Point(203, 61);
             this.add.Name = "add";
-            this.add.Size = new System.Drawing.Size(66, 30);
+            this.add.Size = new System.Drawing.Size(73, 30);
             this.add.TabIndex = 3;
-            this.add.Text = "Kangath Jn\r\nKollam-12\r\n";
+            this.add.Text = "Kankathu Jn\r\nKollam-12\r\n";
             // 
             // sauce
             // 
@@ -352,7 +358,7 @@
             // print
             // 
             this.print.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.print.Location = new System.Drawing.Point(359, 542);
+            this.print.Location = new System.Drawing.Point(359, 538);
             this.print.Name = "print";
             this.print.Size = new System.Drawing.Size(75, 23);
             this.print.TabIndex = 2;
@@ -364,6 +370,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(496, 565);
             this.Controls.Add(this.print);
             this.Controls.Add(this.panel3);
@@ -371,6 +378,8 @@
             this.MaximizeBox = false;
             this.Name = "preview";
             this.Text = "Preview";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.preview_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.preview_FormClosed);
             this.Load += new System.EventHandler(this.preview_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -408,13 +417,14 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button print;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.DataGridViewTextBoxColumn sl_no;
-        private System.Windows.Forms.DataGridViewTextBoxColumn itm_name;
+        private System.Windows.Forms.DataGridViewTextBoxColumn item;
         private System.Windows.Forms.DataGridViewTextBoxColumn qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn rate;
         private System.Windows.Forms.DataGridViewTextBoxColumn vat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn amt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn amount;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        public System.Windows.Forms.Button print;
     }
 }

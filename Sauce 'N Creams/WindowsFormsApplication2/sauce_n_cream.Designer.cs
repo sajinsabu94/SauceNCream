@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(sauce_n_cream));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
@@ -53,13 +52,11 @@
             this.stockEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.searchStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.othersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip3 = new System.Windows.Forms.MenuStrip();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentStockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.stockReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dailyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.monthlyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.annualToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.billDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.print = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.net_amt = new System.Windows.Forms.TextBox();
@@ -92,6 +89,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.groupBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -104,6 +102,7 @@
             // 
             // panel4
             // 
+            this.panel4.BackColor = System.Drawing.Color.White;
             this.panel4.Controls.Add(this.button1);
             this.panel4.Controls.Add(this.panel5);
             this.panel4.Controls.Add(this.panel3);
@@ -139,7 +138,7 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
+            this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.sl_no,
@@ -205,6 +204,7 @@
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.White;
             this.panel3.Controls.Add(this.groupBox2);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
@@ -215,6 +215,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.White;
             this.groupBox2.Controls.Add(this.menuStrip1);
             this.groupBox2.Controls.Add(this.menuStrip2);
             this.groupBox2.Controls.Add(this.menuStrip3);
@@ -231,11 +232,11 @@
             this.menuStrip1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.menuStrip1.AutoSize = false;
-            this.menuStrip1.BackColor = System.Drawing.Color.OrangeRed;
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(15, 57);
+            this.menuStrip1.Location = new System.Drawing.Point(-7, 57);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(120, 40);
             this.menuStrip1.TabIndex = 0;
@@ -244,7 +245,7 @@
             // salesToolStripMenuItem
             // 
             this.salesToolStripMenuItem.AutoSize = false;
-            this.salesToolStripMenuItem.BackColor = System.Drawing.Color.OrangeRed;
+            this.salesToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.salesToolStripMenuItem.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.salesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dailyToolStripMenuItem1,
@@ -253,8 +254,9 @@
             this.byDateToolStripMenuItem});
             this.salesToolStripMenuItem.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.salesToolStripMenuItem.Name = "salesToolStripMenuItem";
-            this.salesToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
+            this.salesToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.salesToolStripMenuItem.Text = "Sales";
+            this.salesToolStripMenuItem.Click += new System.EventHandler(this.salesToolStripMenuItem_Click_1);
             // 
             // dailyToolStripMenuItem1
             // 
@@ -289,7 +291,7 @@
             this.menuStrip2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.menuStrip2.AutoSize = false;
-            this.menuStrip2.BackColor = System.Drawing.Color.OrangeRed;
+            this.menuStrip2.BackColor = System.Drawing.Color.White;
             this.menuStrip2.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stockToolStripMenuItem});
@@ -298,44 +300,54 @@
             this.menuStrip2.Size = new System.Drawing.Size(120, 40);
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
+            this.menuStrip2.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip2_ItemClicked);
             // 
             // stockToolStripMenuItem
             // 
             this.stockToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stockEntryToolStripMenuItem,
             this.stockToolStripMenuItem1,
-            this.searchStockToolStripMenuItem});
+            this.searchStockToolStripMenuItem,
+            this.othersToolStripMenuItem});
             this.stockToolStripMenuItem.Name = "stockToolStripMenuItem";
             this.stockToolStripMenuItem.Size = new System.Drawing.Size(48, 36);
             this.stockToolStripMenuItem.Text = "Stock";
+            this.stockToolStripMenuItem.Click += new System.EventHandler(this.stockToolStripMenuItem_Click_1);
             // 
             // stockEntryToolStripMenuItem
             // 
             this.stockEntryToolStripMenuItem.Name = "stockEntryToolStripMenuItem";
-            this.stockEntryToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.stockEntryToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.stockEntryToolStripMenuItem.Text = "Stock Invoice";
             this.stockEntryToolStripMenuItem.Click += new System.EventHandler(this.stockEntryToolStripMenuItem_Click);
             // 
             // stockToolStripMenuItem1
             // 
             this.stockToolStripMenuItem1.Name = "stockToolStripMenuItem1";
-            this.stockToolStripMenuItem1.Size = new System.Drawing.Size(155, 22);
-            this.stockToolStripMenuItem1.Text = "Stock Updation";
+            this.stockToolStripMenuItem1.Size = new System.Drawing.Size(144, 22);
+            this.stockToolStripMenuItem1.Text = "Purchased";
             this.stockToolStripMenuItem1.Click += new System.EventHandler(this.stockToolStripMenuItem1_Click);
             // 
             // searchStockToolStripMenuItem
             // 
             this.searchStockToolStripMenuItem.Name = "searchStockToolStripMenuItem";
-            this.searchStockToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.searchStockToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.searchStockToolStripMenuItem.Text = "Search Stock";
             this.searchStockToolStripMenuItem.Click += new System.EventHandler(this.searchStockToolStripMenuItem_Click);
+            // 
+            // othersToolStripMenuItem
+            // 
+            this.othersToolStripMenuItem.Name = "othersToolStripMenuItem";
+            this.othersToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.othersToolStripMenuItem.Text = "Others";
+            this.othersToolStripMenuItem.Click += new System.EventHandler(this.othersToolStripMenuItem_Click);
             // 
             // menuStrip3
             // 
             this.menuStrip3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.menuStrip3.AutoSize = false;
-            this.menuStrip3.BackColor = System.Drawing.Color.OrangeRed;
+            this.menuStrip3.BackColor = System.Drawing.Color.White;
             this.menuStrip3.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reportToolStripMenuItem});
@@ -347,49 +359,29 @@
             // 
             // reportToolStripMenuItem
             // 
-            this.reportToolStripMenuItem.BackColor = System.Drawing.Color.OrangeRed;
+            this.reportToolStripMenuItem.BackColor = System.Drawing.Color.White;
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.currentStockToolStripMenuItem,
-            this.stockReportToolStripMenuItem});
+            this.billDetailsToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
             this.reportToolStripMenuItem.Size = new System.Drawing.Size(54, 36);
             this.reportToolStripMenuItem.Text = "Report";
+            this.reportToolStripMenuItem.Click += new System.EventHandler(this.reportToolStripMenuItem_Click);
             // 
             // currentStockToolStripMenuItem
             // 
             this.currentStockToolStripMenuItem.Name = "currentStockToolStripMenuItem";
-            this.currentStockToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.currentStockToolStripMenuItem.ShowShortcutKeys = false;
+            this.currentStockToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.currentStockToolStripMenuItem.Text = "Current Stock";
             this.currentStockToolStripMenuItem.Click += new System.EventHandler(this.currentStockToolStripMenuItem_Click);
             // 
-            // stockReportToolStripMenuItem
+            // billDetailsToolStripMenuItem
             // 
-            this.stockReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dailyToolStripMenuItem,
-            this.monthlyToolStripMenuItem,
-            this.annualToolStripMenuItem});
-            this.stockReportToolStripMenuItem.Name = "stockReportToolStripMenuItem";
-            this.stockReportToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
-            this.stockReportToolStripMenuItem.Text = "Stock Report";
-            // 
-            // dailyToolStripMenuItem
-            // 
-            this.dailyToolStripMenuItem.Name = "dailyToolStripMenuItem";
-            this.dailyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.dailyToolStripMenuItem.Text = "Daily";
-            this.dailyToolStripMenuItem.Click += new System.EventHandler(this.dailyToolStripMenuItem_Click);
-            // 
-            // monthlyToolStripMenuItem
-            // 
-            this.monthlyToolStripMenuItem.Name = "monthlyToolStripMenuItem";
-            this.monthlyToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.monthlyToolStripMenuItem.Text = "Monthly";
-            // 
-            // annualToolStripMenuItem
-            // 
-            this.annualToolStripMenuItem.Name = "annualToolStripMenuItem";
-            this.annualToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.annualToolStripMenuItem.Text = "Annual";
+            this.billDetailsToolStripMenuItem.Name = "billDetailsToolStripMenuItem";
+            this.billDetailsToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.billDetailsToolStripMenuItem.Text = "Bill Details";
+            this.billDetailsToolStripMenuItem.Click += new System.EventHandler(this.billDetailsToolStripMenuItem_Click);
             // 
             // print
             // 
@@ -473,7 +465,6 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.BackgroundImage = global::WindowsFormsApplication2.Properties.Resources.Sauce_Cream_Frame1;
             this.groupBox1.Controls.Add(this.tin);
             this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.date);
@@ -490,6 +481,7 @@
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Invoice";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // tin
             // 
@@ -520,6 +512,7 @@
             this.date.Size = new System.Drawing.Size(40, 19);
             this.date.TabIndex = 10;
             this.date.Text = "Date";
+            this.date.Click += new System.EventHandler(this.date_Click);
             // 
             // label9
             // 
@@ -563,9 +556,9 @@
             this.label4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(637, 101);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 38);
+            this.label4.Size = new System.Drawing.Size(89, 38);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Kangath Jn \r\n Kollam-12";
+            this.label4.Text = "Kankkath Jn \r\n Kollam-12";
             this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label2
@@ -575,12 +568,12 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Cooper Std Black", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(564, 50);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(277, 39);
+            this.label2.Size = new System.Drawing.Size(285, 39);
             this.label2.TabIndex = 2;
-            this.label2.Text = "sauce \'N  cream";
+            this.label2.Text = "sauce \'N  creams";
             this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
@@ -602,8 +595,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.SeaGreen;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1354, 639);
             this.Controls.Add(this.panel1);
@@ -638,7 +630,6 @@
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox bill_no;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox vt;
         private System.Windows.Forms.Label label5;
@@ -664,22 +655,21 @@
         private System.Windows.Forms.MenuStrip menuStrip3;
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem currentStockToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem stockReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem dailyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem monthlyToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem annualToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn sl_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn item;
         private System.Windows.Forms.DataGridViewTextBoxColumn qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn rate;
         private System.Windows.Forms.DataGridViewTextBoxColumn vat;
         private System.Windows.Forms.DataGridViewTextBoxColumn amount;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem dailyToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem monthlyToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem annuallyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem searchStockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem byDateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem billDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem othersToolStripMenuItem;
+        public System.Windows.Forms.TextBox bill_no;
+        public System.Windows.Forms.Button button1;
     }
 }
 

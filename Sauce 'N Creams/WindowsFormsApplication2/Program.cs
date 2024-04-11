@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+//using System.Linq;
 using System.Windows.Forms;
 
 namespace WindowsFormsApplication2
@@ -17,7 +17,8 @@ namespace WindowsFormsApplication2
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                Application.Run(new sauce_n_cream());
+                //Application.Run(new SplashScreen());
+                Application.Run(new Login());
             }
             catch (ExecutionEngineException e)
             {
